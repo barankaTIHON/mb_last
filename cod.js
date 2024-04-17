@@ -1,4 +1,22 @@
-let maxNumberIdTask = 2
+const keyStorage= "keytask"
+let MTL = []
+let maxNumberIdTask = 1
+
+
+let storageData = localStorage.getItem(keyStorage)
+
+
+if(storageData != 0){
+    MTL = JSON.parse(localStorage.getItem(keyStorage))
+}
+
+
+if(MTL.length > 0){
+    MTL.forEach(t=>renderTaskItem(t))
+    let maxNumberIdTask = MTL.map(x=>x,id).reduce((a,b) => Math.max(a,b), -Infinity)
+}
+
+
 
 document.getElementById("button").onclick = AddNewTask
 
@@ -43,14 +61,25 @@ function AddNewTask() {
     const TaskElem = document.getElementById('TaskImpt');
     const Task = TaskElem.value.trim()
 
+    let newTask = {
+        id: maxNumberIdTask,
+        title: taskName
+    }
+    MTL.push(newTask)
+    renderTaskItem(newTask)
+    localStorage.setItem(keyStorage,MTL)
+    JSON.stringify(MTL)
+}
+
+function renderTaskItem(){
     if (Task) {
 
-        maxNumberIdTask++
+        
         AddNewTask.innerHTML =
             `<div class="item-task">
-            <input class="checkbox-task" type="checkbox" name="id-${maxNumberIdTask}" id="chbox-task-${maxNumberIdTask}">
+            <input class="checkbox-task" type="checkbox" name="id-${maxNumberIdTask}" id="chbox-task-${Task.id}">
             <label for="chbox-task-${maxNumberIdTask}"></label>
-            ${Task}
+            ${Task.title}
             </label>
             </div>`
 
@@ -60,6 +89,4 @@ function AddNewTask() {
         listElem.prepend(NewTaskElem)
     }
     TaskElem.value = ''
-
-
 }
