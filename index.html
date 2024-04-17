@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyList</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h1> мои дела</h1>
+        <input type="text" placeholder="delo" id="TaskImpt">
+        <button id="button"> добавить</button>
+        <ul id="ul">
+            <li>
+                <div class="item-task">
+                    <input class="checkbox-task" onchange="markDone(this)" type="checkbox" name="id-1"
+                        id="chbox-task-1">
+                    <label for="chbox-task-1"></label>
+                    задача первая
+                    </label>
+                </div>
+
+            </li>
+            <li>
+                <div class="item-task">
+                    <input class="checkbox-task" type="checkbox" name="id-2" id="chbox-task-2"
+                        onchange="markDone(this)">
+                    <label for="chbox-task-2">
+                        задача первая
+                    </label>
+                </div>
+            </li>
+        </ul>
+
+
+    </div>
+    <script src="cod.js"></script>
+</body>
+
+</html>
